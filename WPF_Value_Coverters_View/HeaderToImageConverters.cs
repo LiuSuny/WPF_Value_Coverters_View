@@ -17,8 +17,8 @@ namespace WPF_Value_Coverters_View
     [ValueConversion(typeof(string)/*source format*/, typeof(BitmapImage)/*target type*/)]
     public class HeaderToImageConverters : IValueConverter
     {
-        public static HeaderToImageConverters Instance = new HeaderToImageConverters();
-        //converter support  converting from image to string and convert it back to original value
+        public static HeaderToImageConverters Instance = new HeaderToImageConverters(); // instantiate this object in order to bind/convert it in our MainWindow.xmal 
+        //converter support  converting from image to string and ability to convert it back to original value
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             //return new object(); testing our image value
@@ -26,7 +26,7 @@ namespace WPF_Value_Coverters_View
             //Getting the full path
             var path = (string)value;
 
-            //Next we check if the path is null we can't do much so ignore
+            //Next we check if the path is null we can't do much than to ignore
             if (path == null) return null;
 
 
@@ -39,11 +39,11 @@ namespace WPF_Value_Coverters_View
             //By default we just presume an image
             var image = "Images.file.png";
 
-            //We check if the name is blank, we presume it is a Drive as a we cannot have a blan file ot folder
+            //We check if the name is blank, we presume it is a Drive as a we cannot have a blank file or folder
 
             if (string.IsNullOrEmpty(name)) image = "Images/Drive.jpeg";
-            //next we check if it is not file but folder and do that in c# we have to create new folder
-            else if (new FileInfo(path).Attributes.HasFlag(FileAttributes.Directory)) //basically we r saying if this file path contain attributes then it a direct folder
+            //next we check if it is not file but folder and we do that in c# wpf creating new folder
+            else if (new FileInfo(path).Attributes.HasFlag(FileAttributes.Directory)) //basically we what r saying is, if this file path contain attributes then it a direct folder
                 image = "Images/file close.png";
             return new BitmapImage(new Uri($"pack://application:,,,/{image}"));
         }

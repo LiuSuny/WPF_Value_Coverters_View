@@ -87,7 +87,7 @@ namespace WPF_Value_Coverters_View
             // checking if the item only contain dumy folder
             if (item.Items.Count != 1 || item.Items[0] != null) return;
 
-            //Try to clear our data it is
+            //Try to clear our data if it is
             item.Items.Clear();
 
             //Getting folder name cast to string as our folder name contain string
@@ -197,7 +197,7 @@ namespace WPF_Value_Coverters_View
             //Next we check if we our path doesn't contain back slash then we try return the last file path
             if (LastIndex <= 0) return path;
 
-            //Return name after th last back slash
+            //Return name after the last back slash
             return path.Substring(LastIndex + 1);
 
         }
